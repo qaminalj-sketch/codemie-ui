@@ -16,7 +16,7 @@
 import React, { useMemo } from 'react'
 import { useSnapshot } from 'valtio'
 
-import { ANALYTICS, SCHEDULERS } from '@/constants/routes'
+import { ANALYTICS, PRODUCTS, SCHEDULERS, SHOPPING_CART, WORK_ITEMS } from '@/constants/routes'
 import {
   useFeatureFlag,
   useFavoritesEnabled,
@@ -127,6 +127,21 @@ const Navigation: React.FC<NavigationProps> = () => {
         icon: IconType.KATA,
         route: router.resolve({ name: 'katas' }).fullPath,
         badge: 'NEW',
+      },
+      {
+        label: 'Work Items',
+        icon: IconType.DOCUMENT,
+        route: router.resolve({ name: WORK_ITEMS }).fullPath,
+      },
+      {
+        label: 'Products',
+        icon: IconType.DOCUMENT,
+        route: router.resolve({ name: PRODUCTS }).fullPath,
+      },
+      {
+        label: 'Shopping Cart',
+        icon: IconType.DOCUMENT,
+        route: router.resolve({ name: SHOPPING_CART }).fullPath,
       },
     ]
 
