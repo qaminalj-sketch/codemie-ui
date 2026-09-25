@@ -332,6 +332,70 @@ src/
 └── router.tsx       # React Router configuration
 ```
 
+## Work Items Feature
+
+The Work Items feature (`src/pages/workItems/`) lets users create and manage platform work items (Tasks, Bugs, Features) with Priority, Status, and Assignee tracking.
+
+### Running Work Items locally
+
+1. Start the dev server and backend as described in [Quick Start](#quick-start).
+2. Navigate to `http://localhost:5173/#/work-items` (or click **Work Items** in the sidebar).
+3. The feature calls `GET /v1/work-items` (list), `POST /v1/work-items` (create), `PUT /v1/work-items/:id` (edit), and `DELETE /v1/work-items/:id` (delete).
+4. If no backend is running, the API calls will fail gracefully — the list shows an inline error message and the form will surface the rejection.
+
+**Key files:**
+
+| File | Purpose |
+|---|---|
+| `src/store/workItems.ts` | Valtio store — CRUD operations and filters |
+| `src/types/entity/workItem.ts` | TypeScript types for `WorkItem` and enums |
+| `src/constants/workItems.ts` | Per-field option lists and limits |
+| `src/pages/workItems/WorkItemsListPage.tsx` | Route component — list + filter + table |
+| `src/pages/workItems/components/WorkItemForm/` | Create / edit modal form |
+| `src/pages/workItems/components/WorkItemFilters.tsx` | Sidebar filter dropdowns |
+
+---
+
+## Shopping Cart (EPMCDMETST-66291)
+
+A guest shopping cart that lets users browse products, add them to a cart, manage quantities, and see a running total. Cart contents persist across page navigation via `localStorage`.
+
+### Running Locally
+
+1. Start the dev server and backend as described in [Quick Start](#quick-start).
+2. Navigate to `http://localhost:5173/#/products` (or click **Products** in the sidebar) to browse the product catalog.
+3. Click **Add to Cart** on any available product — unavailable products show a disabled button and a toast notification if you attempt to add them programmatically.
+4. Navigate to `http://localhost:5173/#/cart` (or click **Shopping Cart** in the sidebar) to view and manage your cart.
+5. Use **+** / **−** buttons to adjust quantity (decreasing from 1 removes the item) or click **Remove** to delete an item directly.
+6. The total amount recalculates automatically. Cart contents survive page refreshes — they are stored in `localStorage` under the key `shopping_cart`.
+
+The feature calls these backend endpoints:
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| `GET` | `/v1/products` | Fetch paginated product list |
+| `GET` | `/v1/products/:id` | Validate availability when adding to cart |
+
+If no backend is running, API calls fail gracefully — the product list shows an inline error and a toast is shown when adding fails.
+
+**Key files:**
+
+| File | Purpose |
+|---|---|
+| `src/store/shoppingCart.ts` | Valtio store — cart actions, `total` getter, localStorage sync |
+| `src/store/products.ts` | Valtio store — product catalog fetching |
+| `src/types/entity/shoppingCart.ts` | `CartItem` TypeScript interface |
+| `src/types/entity/product.ts` | `Product` TypeScript interface |
+| `src/constants/shoppingCart.ts` | Storage key, page size, error messages |
+| `src/utils/cartStorage.ts` | `localStorage` persistence helpers with graceful fallback |
+| `src/pages/shopping/ShoppingCartPage.tsx` | Cart route — item list + summary |
+| `src/pages/shopping/ProductListPage.tsx` | Products route — paginated grid with Add to Cart |
+| `src/pages/shopping/components/CartItem.tsx` | Single cart row with quantity controls |
+| `src/pages/shopping/components/CartSummary.tsx` | Total display and checkout placeholder |
+| `src/pages/shopping/components/ProductCard.tsx` | Product card with availability-aware Add to Cart |
+
+---
+
 ## Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before submitting a pull request.

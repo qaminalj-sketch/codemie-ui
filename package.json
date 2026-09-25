@@ -104,6 +104,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "3.3.1",
     "@originjs/vite-plugin-federation": "1.4.1",
+    "@playwright/test": "^1.63.0",
     "@rushstack/eslint-patch": "1.11.0",
     "@sonar/scan": "^4.3.6",
     "@stylistic/eslint-plugin": "2.13.0",

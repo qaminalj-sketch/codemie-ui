@@ -63,3 +63,6 @@ bmad/*
 # Code-review diff artifacts
 *.diff
 .code-graph/
+docs/codemie/analytics/
+playwright-report/
+docs/codemie/
