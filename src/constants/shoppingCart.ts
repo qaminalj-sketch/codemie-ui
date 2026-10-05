@@ -13,7 +13,7 @@
 // limitations under the License.
 //
 
-export const CART_STORAGE_KEY = 'shopping_cart'
+export const CART_STORAGE_KEY = 'codemie-shopping-cart'
 export const PRODUCTS_PER_PAGE = 12
 export const MAX_PRODUCT_ID_LENGTH = 128
 
