@@ -39,3 +39,15 @@
 - **Module**: `src/pages/settings/administration/`
 - **Existing coverage**: unknown — no harness tests found for MCPs column rendering
 - **Where to add**: `../codemie-sdk/test-harness/codemie_test_harness/tests/ui/` — new Playwright test that applies each preset and asserts the Categories column contains visible text
+# QA Checklist - EPMCDMETST-66906
+| # | Flow | Result | Evidence |
+|---|------|--------|----------|
+| 1 | Add available product | PASS | 02-add-to-cart.png |
+| 2 | Quantity starts at 1 | PASS | 02-add-to-cart.png |
+| 3 | Increase / decrease | PASS | 03-quantity.png |
+| 4 | Remove item | PASS | 04-remove.png |
+| 5 | Unavailable product blocked | PASS | 05-unavailable.png |
+| 6 | Persists on refresh | PASS | 06-persistence.png |
+| 7 | Uses sessionStorage key codemie-shopping-cart | PASS | 07-sessionstorage.png |
+| 8 | Header badge shows count | PASS | 02-add-to-cart.png |
+| 9 | Empty cart message | PASS | 08-empty.png |
