@@ -1,0 +1,349 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-24T10:44:00.336Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 1205959,
+      "turns": 90,
+      "files": 27,
+      "netLines": 866,
+      "toolCallsTotal": 112,
+      "toolSuccessRate": 99.1,
+      "totalCostUSD": 6.4773309,
+      "cacheReadCostUSD": 2.2664858999999997,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "periodStart": "2026-09-24T10:23:51.302Z",
+    "periodEnd": "2026-09-24T10:43:57.261Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "da80ceae-69a2-479f-9e75-8fc3d1fd7cfb",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "Implement the frontend for the work item CRUD feature described in aidocs/spec/ /plan-ui.md (or plan.md if that's the only file present). Build: a list view for work items with filters by Type/Priority/Status, and a create/edit form with fields Title, Description, Type, Priority, Status, Assignee, Tags. Match this repo's existing component patterns, state management, and styling conventions. Add a README section describing how to run it locally.",
+      "project": "/Users/Minal_Jadhav/codemie-ui",
+      "branch": "feature/EPMCDMETST-66291-shopping-cart-management",
+      "startTime": 1790245431302,
+      "durationMs": 1205959,
+      "turns": 90,
+      "fileOps": 27,
+      "linesAdded": 876,
+      "linesRemoved": 10,
+      "linesModified": 0,
+      "netLines": 866,
+      "filesChanged": 13,
+      "filesWritten": 9,
+      "filesEdited": 8,
+      "toolCallsTotal": 112,
+      "toolCallsSuccess": 111,
+      "toolCallsFailure": 1,
+      "models": [
+        "claude-sonnet-4-6"
+      ],
+      "languages": [
+        "typescript",
+        "markdown"
+      ],
+      "tools": [
+        {
+          "toolName": "Bash",
+          "totalCalls": 54,
+          "successCount": 54,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Read",
+          "totalCalls": 36,
+          "successCount": 35,
+          "failureCount": 1,
+          "successRate": 97.22222222222221
+        },
+        {
+          "toolName": "Edit",
+          "totalCalls": 13,
+          "successCount": 13,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Write",
+          "totalCalls": 9,
+          "successCount": 9,
+          "failureCount": 0,
+          "successRate": 100
+        }
+      ],
+      "tokens": {
+        "input": 1549,
+        "output": 32238,
+        "cacheRead": 7554953,
+        "cacheCreation": 620438,
+        "cacheCreation1h": 620438,
+        "total": 8209178
+      },
+      "costUSD": 6.4773309,
+      "cacheReadCostUSD": 2.2664858999999997,
+      "perModelCost": [
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": {
+            "input": 1549,
+            "output": 32238,
+            "cacheRead": 7554953,
+            "cacheCreation": 620438,
+            "cacheCreation1h": 620438,
+            "total": 8209178
+          },
+          "costUSD": 6.4773309,
+          "unpriced": false
+        }
+      ],
+      "hadLog": true,
+      "agentSessionFile": "/Users/Minal_Jadhav/.claude/projects/-Users-Minal-Jadhav-codemie-ui/cd86ee41-54f8-4ac4-87a7-889717f61f10.jsonl",
+      "costSeries": [
+        {
+          "t": 1790245436131,
+          "cost": 0.19591499999999998,
+          "tokens": 32312
+        },
+        {
+          "t": 1790245443036,
+          "cost": 0.4243563,
+          "tokens": 100913
+        },
+        {
+          "t": 1790245455641,
+          "cost": 0.9119043000000001,
+          "tokens": 253152
+        },
+        {
+          "t": 1790245464161,
+          "cost": 1.0848357,
+          "tokens": 366788
+        },
+        {
+          "t": 1790245471255,
+          "cost": 1.2015327,
+          "tokens": 490309
+        },
+        {
+          "t": 1790245481422,
+          "cost": 1.2728115,
+          "tokens": 621903
+        },
+        {
+          "t": 1790245491569,
+          "cost": 1.393806,
+          "tokens": 827642
+        },
+        {
+          "t": 1790245504012,
+          "cost": 1.5136434,
+          "tokens": 975688
+        },
+        {
+          "t": 1790245513450,
+          "cost": 1.5907878000000002,
+          "tokens": 1127623
+        },
+        {
+          "t": 1790245557350,
+          "cost": 1.9992753,
+          "tokens": 1360299
+        },
+        {
+          "t": 1790245582782,
+          "cost": 2.0930496,
+          "tokens": 1519253
+        },
+        {
+          "t": 1790245594442,
+          "cost": 2.1659958,
+          "tokens": 1680956
+        },
+        {
+          "t": 1790245618508,
+          "cost": 2.265183,
+          "tokens": 1847688
+        },
+        {
+          "t": 1790245633800,
+          "cost": 2.3932155,
+          "tokens": 2101408
+        },
+        {
+          "t": 1790245641642,
+          "cost": 2.4684693,
+          "tokens": 2274107
+        },
+        {
+          "t": 1790245662814,
+          "cost": 2.5758663,
+          "tokens": 2452714
+        },
+        {
+          "t": 1790245673921,
+          "cost": 2.697066,
+          "tokens": 2725789
+        },
+        {
+          "t": 1790245680849,
+          "cost": 2.7629898,
+          "tokens": 2909639
+        },
+        {
+          "t": 1790245687331,
+          "cost": 3.2221239,
+          "tokens": 3094949
+        },
+        {
+          "t": 1790245695063,
+          "cost": 3.296766,
+          "tokens": 3281830
+        },
+        {
+          "t": 1790245707580,
+          "cost": 3.4111697999999997,
+          "tokens": 3566809
+        },
+        {
+          "t": 1790245733425,
+          "cost": 3.4897163999999994,
+          "tokens": 3758144
+        },
+        {
+          "t": 1790245805981,
+          "cost": 3.5644691999999996,
+          "tokens": 3950838
+        },
+        {
+          "t": 1790245987564,
+          "cost": 4.186853999999999,
+          "tokens": 4144789
+        },
+        {
+          "t": 1790245998775,
+          "cost": 4.287491099999999,
+          "tokens": 4437086
+        },
+        {
+          "t": 1790246011278,
+          "cost": 4.363129199999999,
+          "tokens": 4633746
+        },
+        {
+          "t": 1790246021895,
+          "cost": 4.867566599999999,
+          "tokens": 4832432
+        },
+        {
+          "t": 1790246034533,
+          "cost": 4.986632099999999,
+          "tokens": 5134819
+        },
+        {
+          "t": 1790246046613,
+          "cost": 5.106264899999999,
+          "tokens": 5341549
+        },
+        {
+          "t": 1790246083515,
+          "cost": 5.219638799999999,
+          "tokens": 5552180
+        },
+        {
+          "t": 1790246090102,
+          "cost": 5.3333756999999995,
+          "tokens": 5766782
+        },
+        {
+          "t": 1790246109862,
+          "cost": 5.4796224,
+          "tokens": 6092485
+        },
+        {
+          "t": 1790246120330,
+          "cost": 5.564660700000001,
+          "tokens": 6311927
+        },
+        {
+          "t": 1790246148890,
+          "cost": 5.681172900000001,
+          "tokens": 6534861
+        },
+        {
+          "t": 1790246173406,
+          "cost": 5.858140200000001,
+          "tokens": 6876227
+        },
+        {
+          "t": 1790246196973,
+          "cost": 5.990940300000002,
+          "tokens": 7112278
+        },
+        {
+          "t": 1790246213706,
+          "cost": 6.092807100000002,
+          "tokens": 7351251
+        },
+        {
+          "t": 1790246226987,
+          "cost": 6.244482900000001,
+          "tokens": 7593945
+        },
+        {
+          "t": 1790246249007,
+          "cost": 6.391785600000001,
+          "tokens": 7961988
+        },
+        {
+          "t": 1790246346998,
+          "cost": 6.477330900000001,
+          "tokens": 8209178
+        }
+      ],
+      "costSource": "native-estimate",
+      "costBasis": "standard-api-tokens",
+      "dispatchesComplete": true,
+      "rootOwnCostUSD": 6.4773309,
+      "unlinkedCostUSD": 0,
+      "unlinkedAgentIds": [],
+      "rootOwnTokens": {
+        "input": 1549,
+        "output": 32238,
+        "cacheRead": 7554953,
+        "cacheCreation": 620438,
+        "cacheCreation1h": 620438,
+        "total": 8209178
+      },
+      "unlinkedTokens": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheCreation": 0,
+        "cacheCreation1h": 0,
+        "total": 0
+      },
+      "skillInvocations": [],
+      "agentInvocations": [],
+      "commandInvocations": [],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

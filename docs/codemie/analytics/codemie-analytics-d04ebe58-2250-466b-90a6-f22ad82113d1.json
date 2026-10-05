@@ -1,0 +1,349 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-24T11:03:13.196Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 735771,
+      "turns": 58,
+      "files": 29,
+      "netLines": 741,
+      "toolCallsTotal": 69,
+      "toolSuccessRate": 100,
+      "totalCostUSD": 4.0183671,
+      "cacheReadCostUSD": 1.3746980999999998,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "periodStart": "2026-09-24T10:50:54.451Z",
+    "periodEnd": "2026-09-24T11:03:10.222Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "d04ebe58-2250-466b-90a6-f22ad82113d1",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "Implement the frontend for the feature described in aidocs/spec/EPMCDMETST-66291-shopping-cart-management/plan.md. Match this repo's existing component patterns, state management, and styling conventions. Add a README section describing how to run it locally.",
+      "project": "/Users/Minal_Jadhav/codemie-ui",
+      "branch": "feature/EPMCDMETST-66291-shopping-cart-management",
+      "startTime": 1790247054451,
+      "durationMs": 735771,
+      "turns": 58,
+      "fileOps": 29,
+      "linesAdded": 811,
+      "linesRemoved": 70,
+      "linesModified": 0,
+      "netLines": 741,
+      "filesChanged": 15,
+      "filesWritten": 11,
+      "filesEdited": 6,
+      "toolCallsTotal": 69,
+      "toolCallsSuccess": 69,
+      "toolCallsFailure": 0,
+      "models": [
+        "claude-sonnet-4-6"
+      ],
+      "languages": [
+        "typescript",
+        "markdown"
+      ],
+      "tools": [
+        {
+          "toolName": "Bash",
+          "totalCalls": 23,
+          "successCount": 23,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Read",
+          "totalCalls": 21,
+          "successCount": 21,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Edit",
+          "totalCalls": 14,
+          "successCount": 14,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Write",
+          "totalCalls": 11,
+          "successCount": 11,
+          "failureCount": 0,
+          "successRate": 100
+        }
+      ],
+      "tokens": {
+        "input": 2857,
+        "output": 27146,
+        "cacheRead": 4582327,
+        "cacheCreation": 371318,
+        "cacheCreation1h": 371318,
+        "total": 4983648
+      },
+      "costUSD": 4.0183671,
+      "cacheReadCostUSD": 1.3746980999999998,
+      "perModelCost": [
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": {
+            "input": 2857,
+            "output": 27146,
+            "cacheRead": 4582327,
+            "cacheCreation": 371318,
+            "cacheCreation1h": 371318,
+            "total": 4983648
+          },
+          "costUSD": 4.0183671,
+          "unpriced": false
+        }
+      ],
+      "hadLog": true,
+      "agentSessionFile": "/Users/Minal_Jadhav/.claude/projects/-Users-Minal-Jadhav-codemie-ui/75251d38-e412-4faf-a6b9-74f966cc5b61.jsonl",
+      "costSeries": [
+        {
+          "t": 1790247059162,
+          "cost": 0.060729599999999995,
+          "tokens": 32412
+        },
+        {
+          "t": 1790247063110,
+          "cost": 0.1756782,
+          "tokens": 73792
+        },
+        {
+          "t": 1790247071866,
+          "cost": 0.4331763,
+          "tokens": 177659
+        },
+        {
+          "t": 1790247076528,
+          "cost": 0.47400810000000004,
+          "tokens": 238493
+        },
+        {
+          "t": 1790247089968,
+          "cost": 0.8489541,
+          "tokens": 367239
+        },
+        {
+          "t": 1790247094331,
+          "cost": 0.8947509,
+          "tokens": 434546
+        },
+        {
+          "t": 1790247171561,
+          "cost": 1.1331336,
+          "tokens": 579550
+        },
+        {
+          "t": 1790247174497,
+          "cost": 1.2173487,
+          "tokens": 657149
+        },
+        {
+          "t": 1790247184124,
+          "cost": 1.331697,
+          "tokens": 814867
+        },
+        {
+          "t": 1790247189374,
+          "cost": 1.3745763,
+          "tokens": 895158
+        },
+        {
+          "t": 1790247243880,
+          "cost": 1.5090213,
+          "tokens": 1058033
+        },
+        {
+          "t": 1790247249481,
+          "cost": 1.5484547999999998,
+          "tokens": 1140081
+        },
+        {
+          "t": 1790247264458,
+          "cost": 1.6213152,
+          "tokens": 1306108
+        },
+        {
+          "t": 1790247272902,
+          "cost": 1.6751916,
+          "tokens": 1390703
+        },
+        {
+          "t": 1790247275574,
+          "cost": 1.7095626,
+          "tokens": 1475590
+        },
+        {
+          "t": 1790247291683,
+          "cost": 1.8006902999999999,
+          "tokens": 1647837
+        },
+        {
+          "t": 1790247298795,
+          "cost": 1.8453582,
+          "tokens": 1734983
+        },
+        {
+          "t": 1790247314463,
+          "cost": 1.9363653,
+          "tokens": 1912087
+        },
+        {
+          "t": 1790247320741,
+          "cost": 2.3394579,
+          "tokens": 2001485
+        },
+        {
+          "t": 1790247328576,
+          "cost": 2.421765,
+          "tokens": 2181367
+        },
+        {
+          "t": 1790247332197,
+          "cost": 2.4573195,
+          "tokens": 2271869
+        },
+        {
+          "t": 1790247341654,
+          "cost": 2.5319328000000003,
+          "tokens": 2453608
+        },
+        {
+          "t": 1790247345347,
+          "cost": 2.5651614000000005,
+          "tokens": 2544991
+        },
+        {
+          "t": 1790247362266,
+          "cost": 2.6463357000000003,
+          "tokens": 2729188
+        },
+        {
+          "t": 1790247366461,
+          "cost": 2.6809521000000003,
+          "tokens": 2822008
+        },
+        {
+          "t": 1790247387196,
+          "cost": 2.7559023000000002,
+          "tokens": 3009063
+        },
+        {
+          "t": 1790247392351,
+          "cost": 2.8055946,
+          "tokens": 3102869
+        },
+        {
+          "t": 1790247397302,
+          "cost": 2.8386825,
+          "tokens": 3196842
+        },
+        {
+          "t": 1790247443932,
+          "cost": 2.9121903,
+          "tokens": 3386509
+        },
+        {
+          "t": 1790247461190,
+          "cost": 2.9527973999999997,
+          "tokens": 3482055
+        },
+        {
+          "t": 1790247494191,
+          "cost": 3.0433071,
+          "tokens": 3675238
+        },
+        {
+          "t": 1790247502112,
+          "cost": 3.0998337,
+          "tokens": 3773628
+        },
+        {
+          "t": 1790247514295,
+          "cost": 3.1852278,
+          "tokens": 3971213
+        },
+        {
+          "t": 1790247522030,
+          "cost": 3.2214153,
+          "tokens": 4070600
+        },
+        {
+          "t": 1790247533203,
+          "cost": 3.3001061999999997,
+          "tokens": 4270765
+        },
+        {
+          "t": 1790247536559,
+          "cost": 3.3399152999999995,
+          "tokens": 4371325
+        },
+        {
+          "t": 1790247546211,
+          "cost": 3.4124945999999996,
+          "tokens": 4573740
+        },
+        {
+          "t": 1790247550432,
+          "cost": 3.8884451999999996,
+          "tokens": 4675428
+        },
+        {
+          "t": 1790247573915,
+          "cost": 3.9682904999999997,
+          "tokens": 4879991
+        },
+        {
+          "t": 1790247586080,
+          "cost": 4.0183671,
+          "tokens": 4983648
+        }
+      ],
+      "costSource": "native-estimate",
+      "costBasis": "standard-api-tokens",
+      "dispatchesComplete": true,
+      "rootOwnCostUSD": 4.0183671,
+      "unlinkedCostUSD": 0,
+      "unlinkedAgentIds": [],
+      "rootOwnTokens": {
+        "input": 2857,
+        "output": 27146,
+        "cacheRead": 4582327,
+        "cacheCreation": 371318,
+        "cacheCreation1h": 371318,
+        "total": 4983648
+      },
+      "unlinkedTokens": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheCreation": 0,
+        "cacheCreation1h": 0,
+        "total": 0
+      },
+      "skillInvocations": [],
+      "agentInvocations": [],
+      "commandInvocations": [],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

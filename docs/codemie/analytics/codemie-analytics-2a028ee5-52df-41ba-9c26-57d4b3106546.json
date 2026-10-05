@@ -1,0 +1,341 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-24T18:10:30.982Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 616647,
+      "turns": 56,
+      "files": 24,
+      "netLines": 487,
+      "toolCallsTotal": 72,
+      "toolSuccessRate": 98.6,
+      "totalCostUSD": 3.6133499999999996,
+      "cacheReadCostUSD": 1.028244,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "periodStart": "2026-09-24T18:00:11.248Z",
+    "periodEnd": "2026-09-24T18:10:27.895Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "2a028ee5-52df-41ba-9c26-57d4b3106546",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "Generate Playwright test scripts in tests/e2e/ that automate the scenarios in tests/features/shopping-cart.feature and tests/features/work-items.feature. Use the actual routes/components in src/pages/shopping and src/pages/workItems to write real selectors. Use @playwright/test syntax.",
+      "project": "/Users/Minal_Jadhav/codemie-ui",
+      "branch": "feature/EPMCDMETST-66291-shopping-cart-management",
+      "startTime": 1790272811248,
+      "durationMs": 616647,
+      "turns": 56,
+      "fileOps": 24,
+      "linesAdded": 487,
+      "linesRemoved": 0,
+      "linesModified": 0,
+      "netLines": 487,
+      "filesChanged": 4,
+      "filesWritten": 4,
+      "filesEdited": 0,
+      "toolCallsTotal": 72,
+      "toolCallsSuccess": 71,
+      "toolCallsFailure": 1,
+      "models": [
+        "claude-sonnet-4-6"
+      ],
+      "languages": [
+        "typescript"
+      ],
+      "tools": [
+        {
+          "toolName": "Bash",
+          "totalCalls": 48,
+          "successCount": 47,
+          "failureCount": 1,
+          "successRate": 97.91666666666666
+        },
+        {
+          "toolName": "Read",
+          "totalCalls": 20,
+          "successCount": 20,
+          "failureCount": 0,
+          "successRate": 100
+        },
+        {
+          "toolName": "Write",
+          "totalCalls": 4,
+          "successCount": 4,
+          "failureCount": 0,
+          "successRate": 100
+        }
+      ],
+      "tokens": {
+        "input": 2154,
+        "output": 31596,
+        "cacheRead": 3427480,
+        "cacheCreation": 350784,
+        "cacheCreation1h": 350784,
+        "total": 3812014
+      },
+      "costUSD": 3.6133499999999996,
+      "cacheReadCostUSD": 1.028244,
+      "perModelCost": [
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": {
+            "input": 2154,
+            "output": 31596,
+            "cacheRead": 3427480,
+            "cacheCreation": 350784,
+            "cacheCreation1h": 350784,
+            "total": 3812014
+          },
+          "costUSD": 3.6133499999999996,
+          "unpriced": false
+        }
+      ],
+      "hadLog": true,
+      "agentSessionFile": "/Users/Minal_Jadhav/.claude/projects/-Users-Minal-Jadhav-codemie-ui/1a42d0b6-67fb-46a1-9d97-eb9fd69a6379.jsonl",
+      "costSeries": [
+        {
+          "t": 1790272816383,
+          "cost": 0.19600499999999998,
+          "tokens": 32363
+        },
+        {
+          "t": 1790272820069,
+          "cost": 0.397305,
+          "tokens": 65411
+        },
+        {
+          "t": 1790272826140,
+          "cost": 0.6577896000000001,
+          "tokens": 140310
+        },
+        {
+          "t": 1790272829428,
+          "cost": 0.7763442,
+          "tokens": 182441
+        },
+        {
+          "t": 1790272837030,
+          "cost": 0.8749467000000001,
+          "tokens": 274061
+        },
+        {
+          "t": 1790272841121,
+          "cost": 0.9238755000000001,
+          "tokens": 321705
+        },
+        {
+          "t": 1790272843238,
+          "cost": 0.9503004,
+          "tokens": 369744
+        },
+        {
+          "t": 1790272861184,
+          "cost": 1.0105167000000002,
+          "tokens": 469925
+        },
+        {
+          "t": 1790272871229,
+          "cost": 1.0585635000000002,
+          "tokens": 524655
+        },
+        {
+          "t": 1790272880874,
+          "cost": 1.1150796000000003,
+          "tokens": 637455
+        },
+        {
+          "t": 1790272883355,
+          "cost": 1.1852943000000002,
+          "tokens": 694524
+        },
+        {
+          "t": 1790272891541,
+          "cost": 1.2438573000000002,
+          "tokens": 811382
+        },
+        {
+          "t": 1790272893898,
+          "cost": 1.2651171,
+          "tokens": 870283
+        },
+        {
+          "t": 1790272897523,
+          "cost": 1.2982749,
+          "tokens": 930565
+        },
+        {
+          "t": 1790272922754,
+          "cost": 1.3586253,
+          "tokens": 1052823
+        },
+        {
+          "t": 1790272927922,
+          "cost": 1.5971529,
+          "tokens": 1114948
+        },
+        {
+          "t": 1790272937297,
+          "cost": 1.6501818,
+          "tokens": 1240353
+        },
+        {
+          "t": 1790272939818,
+          "cost": 1.6866822,
+          "tokens": 1303582
+        },
+        {
+          "t": 1790272955379,
+          "cost": 1.7305578,
+          "tokens": 1368650
+        },
+        {
+          "t": 1790272961359,
+          "cost": 1.7982666,
+          "tokens": 1499486
+        },
+        {
+          "t": 1790272973602,
+          "cost": 1.8438117,
+          "tokens": 1565930
+        },
+        {
+          "t": 1790272987431,
+          "cost": 1.9121721,
+          "tokens": 1700466
+        },
+        {
+          "t": 1790273000829,
+          "cost": 1.9647405,
+          "tokens": 1769937
+        },
+        {
+          "t": 1790273003799,
+          "cost": 2.0012121,
+          "tokens": 1839628
+        },
+        {
+          "t": 1790273019075,
+          "cost": 2.0850525,
+          "tokens": 1981817
+        },
+        {
+          "t": 1790273034967,
+          "cost": 2.1256863000000004,
+          "tokens": 2054580
+        },
+        {
+          "t": 1790273064194,
+          "cost": 2.2381680000000004,
+          "tokens": 2205914
+        },
+        {
+          "t": 1790273071809,
+          "cost": 2.2983042000000005,
+          "tokens": 2283348
+        },
+        {
+          "t": 1790273084713,
+          "cost": 2.3497377000000004,
+          "tokens": 2362534
+        },
+        {
+          "t": 1790273128908,
+          "cost": 2.4893742000000003,
+          "tokens": 2528440
+        },
+        {
+          "t": 1790273150609,
+          "cost": 2.8765998,
+          "tokens": 2613224
+        },
+        {
+          "t": 1790273162089,
+          "cost": 2.9608671,
+          "tokens": 2784378
+        },
+        {
+          "t": 1790273197451,
+          "cost": 3.0652497000000003,
+          "tokens": 2873173
+        },
+        {
+          "t": 1790273214346,
+          "cost": 3.1772430000000007,
+          "tokens": 3052554
+        },
+        {
+          "t": 1790273219154,
+          "cost": 3.2350275000000006,
+          "tokens": 3143222
+        },
+        {
+          "t": 1790273229886,
+          "cost": 3.2873796000000004,
+          "tokens": 3235009
+        },
+        {
+          "t": 1790273276005,
+          "cost": 3.4251255000000005,
+          "tokens": 3424830
+        },
+        {
+          "t": 1790273279546,
+          "cost": 3.4693785000000004,
+          "tokens": 3521138
+        },
+        {
+          "t": 1790273288286,
+          "cost": 3.5743575,
+          "tokens": 3714503
+        },
+        {
+          "t": 1790273302452,
+          "cost": 3.61335,
+          "tokens": 3812014
+        }
+      ],
+      "costSource": "native-estimate",
+      "costBasis": "standard-api-tokens",
+      "dispatchesComplete": true,
+      "rootOwnCostUSD": 3.6133499999999996,
+      "unlinkedCostUSD": 0,
+      "unlinkedAgentIds": [],
+      "rootOwnTokens": {
+        "input": 2154,
+        "output": 31596,
+        "cacheRead": 3427480,
+        "cacheCreation": 350784,
+        "cacheCreation1h": 350784,
+        "total": 3812014
+      },
+      "unlinkedTokens": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheCreation": 0,
+        "cacheCreation1h": 0,
+        "total": 0
+      },
+      "skillInvocations": [],
+      "agentInvocations": [],
+      "commandInvocations": [],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}

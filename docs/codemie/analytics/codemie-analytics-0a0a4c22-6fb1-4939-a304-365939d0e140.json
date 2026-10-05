@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "generatedAt": "2026-09-24T10:46:07.583Z",
+    "rangeLabel": "all",
+    "agents": [
+      "claude"
+    ],
+    "projectFilter": "all",
+    "totals": {
+      "sessions": 1,
+      "durationMs": 90411,
+      "turns": 9,
+      "files": 13,
+      "netLines": 0,
+      "toolCallsTotal": 19,
+      "toolSuccessRate": 78.9,
+      "totalCostUSD": 1.2744233999999999,
+      "cacheReadCostUSD": 0.08045039999999999,
+      "pricedSessions": 1
+    },
+    "unpricedModels": [],
+    "coverage": [
+      {
+        "agentName": "claude",
+        "total": 1,
+        "priced": 1,
+        "withLog": 1
+      }
+    ],
+    "periodStart": "2026-09-24T10:44:33.432Z",
+    "periodEnd": "2026-09-24T10:46:03.843Z"
+  },
+  "sessions": [
+    {
+      "sessionId": "0a0a4c22-6fb1-4939-a304-365939d0e140",
+      "agentName": "claude",
+      "provider": "ai-run-sso",
+      "title": "Implement the frontend for the feature described in aidocs/spec/EPMCDMETST-66291-shopping-cart-management/plan.md. Also review aidocs/spec/EPMCDMETST-66291-shopping-cart-management/design.md for the intended architecture and component structure before implementing. Match this repo's existing component patterns, state management, and styling conventions. Add a README section describing how to run it locally.",
+      "project": "/Users/Minal_Jadhav/codemie-ui",
+      "branch": "feature/EPMCDMETST-66291-shopping-cart-management",
+      "startTime": 1790246673432,
+      "durationMs": 90411,
+      "turns": 9,
+      "fileOps": 13,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "linesModified": 0,
+      "netLines": 0,
+      "filesChanged": 0,
+      "filesWritten": 0,
+      "filesEdited": 0,
+      "toolCallsTotal": 19,
+      "toolCallsSuccess": 15,
+      "toolCallsFailure": 4,
+      "models": [
+        "claude-sonnet-4-6"
+      ],
+      "languages": [
+        "markdown",
+        "typescript"
+      ],
+      "tools": [
+        {
+          "toolName": "Read",
+          "totalCalls": 15,
+          "successCount": 14,
+          "failureCount": 1,
+          "successRate": 93.33333333333333
+        },
+        {
+          "toolName": "Write",
+          "totalCalls": 3,
+          "successCount": 0,
+          "failureCount": 3,
+          "successRate": 0
+        },
+        {
+          "toolName": "Bash",
+          "totalCalls": 1,
+          "successCount": 1,
+          "failureCount": 0,
+          "successRate": 100
+        }
+      ],
+      "tokens": {
+        "input": 11,
+        "output": 6906,
+        "cacheRead": 268168,
+        "cacheCreation": 181725,
+        "cacheCreation1h": 181725,
+        "total": 456810
+      },
+      "costUSD": 1.2744233999999999,
+      "cacheReadCostUSD": 0.08045039999999999,
+      "perModelCost": [
+        {
+          "model": "claude-sonnet-4-6",
+          "tokens": {
+            "input": 11,
+            "output": 6906,
+            "cacheRead": 268168,
+            "cacheCreation": 181725,
+            "cacheCreation1h": 181725,
+            "total": 456810
+          },
+          "costUSD": 1.2744233999999999,
+          "unpriced": false
+        }
+      ],
+      "hadLog": true,
+      "agentSessionFile": "/Users/Minal_Jadhav/.claude/projects/-Users-Minal-Jadhav-codemie-ui/1ae314d5-4c49-418c-b168-57e818e74018.jsonl",
+      "costSeries": [
+        {
+          "t": 1790246677125,
+          "cost": 0.155724,
+          "tokens": 25624
+        },
+        {
+          "t": 1790246681253,
+          "cost": 0.203151,
+          "tokens": 57254
+        },
+        {
+          "t": 1790246685416,
+          "cost": 0.450054,
+          "tokens": 98033
+        },
+        {
+          "t": 1790246690047,
+          "cost": 0.535305,
+          "tokens": 150339
+        },
+        {
+          "t": 1790246696050,
+          "cost": 0.6984477,
+          "tokens": 206970
+        },
+        {
+          "t": 1790246701534,
+          "cost": 0.7595859,
+          "tokens": 265847
+        },
+        {
+          "t": 1790246705640,
+          "cost": 0.7887396,
+          "tokens": 325931
+        },
+        {
+          "t": 1790246753586,
+          "cost": 1.2220686,
+          "tokens": 391100
+        },
+        {
+          "t": 1790246763124,
+          "cost": 1.2744234,
+          "tokens": 456810
+        }
+      ],
+      "costSource": "native-estimate",
+      "costBasis": "standard-api-tokens",
+      "dispatchesComplete": true,
+      "rootOwnCostUSD": 1.2744233999999999,
+      "unlinkedCostUSD": 0,
+      "unlinkedAgentIds": [],
+      "rootOwnTokens": {
+        "input": 11,
+        "output": 6906,
+        "cacheRead": 268168,
+        "cacheCreation": 181725,
+        "cacheCreation1h": 181725,
+        "total": 456810
+      },
+      "unlinkedTokens": {
+        "input": 0,
+        "output": 0,
+        "cacheRead": 0,
+        "cacheCreation": 0,
+        "cacheCreation1h": 0,
+        "total": 0
+      },
+      "skillInvocations": [],
+      "agentInvocations": [],
+      "commandInvocations": [],
+      "sessionSource": "Pure chat"
+    }
+  ]
+}
