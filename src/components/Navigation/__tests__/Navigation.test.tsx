@@ -27,6 +27,7 @@ const {
   mockAssistantsStore,
   mockChatsStore,
   mockRouter,
+  mockShoppingCartStore,
   mockUseTheme,
 } = vi.hoisted(() => {
   return {
@@ -47,6 +48,9 @@ const {
     },
     mockChatsStore: {
       startNewChat: vi.fn().mockResolvedValue(undefined),
+    },
+    mockShoppingCartStore: {
+      itemCount: 0,
     },
     mockRouter: {
       push: vi.fn(),
@@ -87,6 +91,10 @@ vi.mock('@/store/chats', () => ({
   chatsStore: mockChatsStore,
 }))
 
+vi.mock('@/store/shoppingCart', () => ({
+  shoppingCartStore: mockShoppingCartStore,
+}))
+
 vi.mock('@/hooks/useTheme', () => ({
   useTheme: vi.fn(() => mockUseTheme),
 }))
@@ -113,6 +121,7 @@ describe('Navigation', () => {
     vi.clearAllMocks()
     mockAppInfoStore.navigationExpanded = false
     mockApplicationsStore.applications = []
+    mockShoppingCartStore.itemCount = 0
     mockRouter.resolve.mockImplementation(({ path, name }: any) => {
       const routes: Record<string, string> = {
         '/chats': '/chats',
@@ -127,6 +136,8 @@ describe('Navigation', () => {
         analytics: '/analytics',
         help: '/help',
         'terms-and-conditions': '/terms-and-conditions',
+        products: '/products',
+        'shopping-cart': '/cart',
       }
       return { fullPath: routes[path ?? name] ?? '/' }
     })
@@ -224,5 +235,50 @@ describe('Navigation', () => {
     renderWithRouter(<Navigation />)
 
     expect(screen.getByRole('link', { name: 'Schedulers' })).toBeInTheDocument()
+  })
+
+  describe('shopping cart badge', () => {
+    it('shows no count when the cart is empty', () => {
+      renderWithRouter(<Navigation />)
+
+      const link = screen.getByRole('link', { name: 'Shopping Cart' })
+      expect(link).not.toHaveAttribute('aria-label')
+      expect(link).toHaveTextContent(/^Shopping Cart$/)
+    })
+
+    it('keeps the count visible while navigation is collapsed, unlike NEW badges', () => {
+      mockShoppingCartStore.itemCount = 2
+      renderWithRouter(<Navigation />)
+
+      expect(screen.getByText('2')).toHaveClass('opacity-100')
+      screen.getAllByText('NEW').forEach((badge) => expect(badge).toHaveClass('opacity-0'))
+    })
+
+    it('shows the item count with an accessible name', () => {
+      mockShoppingCartStore.itemCount = 3
+      renderWithRouter(<Navigation />)
+
+      const link = screen.getByRole('link', { name: 'Shopping Cart, 3 items' })
+      expect(link).toHaveAttribute('href', '/cart')
+      expect(link).toHaveTextContent('3')
+    })
+
+    it('uses singular wording for one item', () => {
+      mockShoppingCartStore.itemCount = 1
+      renderWithRouter(<Navigation />)
+
+      expect(screen.getByRole('link', { name: 'Shopping Cart, 1 item' })).toBeInTheDocument()
+    })
+
+    it('includes the count in the tooltip when navigation is collapsed', () => {
+      mockAppInfoStore.navigationExpanded = false
+      mockShoppingCartStore.itemCount = 3
+      renderWithRouter(<Navigation />)
+
+      expect(screen.getByRole('link', { name: 'Shopping Cart, 3 items' })).toHaveAttribute(
+        'data-tooltip-content',
+        'Shopping Cart, 3 items'
+      )
+    })
   })
 })

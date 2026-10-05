@@ -19,14 +19,16 @@ import { CART_MESSAGES } from '@/constants/shoppingCart'
 import { productsStore } from '@/store/products'
 import { CartItem } from '@/types/entity/shoppingCart'
 import { clearCartStorage, loadCartFromStorage, saveCartToStorage } from '@/utils/cartStorage'
+import { isValidProduct, isValidProductId } from '@/utils/cartValidation'
 import toaster from '@/utils/toaster'
 
 interface ShoppingCartStoreType {
   items: CartItem[]
   loading: boolean
-  error: string | null
   readonly total: number
+  readonly itemCount: number
   addToCart: (productId: string) => Promise<void>
+  increaseExistingItem: (productId: string) => void
   increaseQuantity: (productId: string) => void
   decreaseQuantity: (productId: string) => void
   removeFromCart: (productId: string) => void
@@ -38,26 +40,53 @@ interface ShoppingCartStoreType {
 export const shoppingCartStore = proxy<ShoppingCartStoreType>({
   items: loadCartFromStorage(),
   loading: false,
-  error: null,
 
+  /** Sum of all item subtotals (unit price × quantity). */
   get total(): number {
     return this.items.reduce((sum: number, item: CartItem) => sum + item.price * item.quantity, 0)
   },
 
+  /** Sum of all item quantities. */
+  get itemCount(): number {
+    return this.items.reduce((sum: number, item: CartItem) => sum + item.quantity, 0)
+  },
+
+  /**
+   * Adds an available product with quantity 1, or increments it if already in the cart.
+   * Availability is checked against the product catalogue before a new item is added.
+   * A success toast confirms either outcome, since the product list has no other feedback.
+   */
   async addToCart(productId) {
-    const existing = this.items.find((item) => item.productId === productId)
-    if (existing) {
-      existing.quantity += 1
-      this.saveCart()
+    if (!isValidProductId(productId)) {
+      toaster.error(CART_MESSAGES.INVALID_PRODUCT)
+      return
+    }
+
+    const listed = productsStore.items.find((product) => product.id === productId)
+    if (listed && !listed.available) {
+      toaster.error(CART_MESSAGES.UNAVAILABLE_PRODUCT)
+      return
+    }
+
+    if (this.items.some((item) => item.productId === productId)) {
+      this.increaseExistingItem(productId)
       return
     }
 
     this.loading = true
-    this.error = null
     try {
       const product = await productsStore.fetchProductById(productId)
+      if (!isValidProduct(product) || product.id !== productId) {
+        toaster.error(CART_MESSAGES.PRODUCT_LOAD_ERROR)
+        return
+      }
       if (!product.available) {
         toaster.error(CART_MESSAGES.UNAVAILABLE_PRODUCT)
+        return
+      }
+      // A concurrent click may have added the product while the request was in flight
+      if (this.items.some((item) => item.productId === productId)) {
+        this.increaseExistingItem(productId)
         return
       }
       this.items.push({
@@ -68,8 +97,8 @@ export const shoppingCartStore = proxy<ShoppingCartStoreType>({
         available: product.available,
       })
       this.saveCart()
-    } catch (err: any) {
-      this.error = err.message ?? CART_MESSAGES.PRODUCT_LOAD_ERROR
+      toaster.success(CART_MESSAGES.ADDED_TO_CART(product.name))
+    } catch (err) {
       toaster.error(CART_MESSAGES.PRODUCT_LOAD_ERROR)
       console.error('Store Error (addToCart):', err)
     } finally {
@@ -77,14 +106,21 @@ export const shoppingCartStore = proxy<ShoppingCartStoreType>({
     }
   },
 
-  increaseQuantity(productId) {
+  /** Increments an item already in the cart from Add to Cart and confirms the new quantity. */
+  increaseExistingItem(productId) {
+    this.increaseQuantity(productId)
     const item = this.items.find((i) => i.productId === productId)
-    if (item) {
-      item.quantity += 1
-      this.saveCart()
-    }
+    if (item) toaster.success(CART_MESSAGES.QUANTITY_INCREASED(item.name, item.quantity))
   },
 
+  increaseQuantity(productId) {
+    const item = this.items.find((i) => i.productId === productId)
+    if (!item || item.quantity >= Number.MAX_SAFE_INTEGER) return
+    item.quantity += 1
+    this.saveCart()
+  },
+
+  /** Decrements the quantity; an item whose quantity would reach 0 is removed. */
   decreaseQuantity(productId) {
     const idx = this.items.findIndex((i) => i.productId === productId)
     if (idx === -1) return

@@ -18,6 +18,7 @@ import React from 'react'
 import Button from '@/components/Button'
 import { ButtonSize } from '@/constants'
 import { CartItem as CartItemType } from '@/types/entity/shoppingCart'
+import { cn } from '@/utils/utils'
 
 interface CartItemProps {
   item: CartItemType
@@ -35,42 +36,56 @@ const CartItem: React.FC<CartItemProps> = ({
   className,
 }) => {
   const subtotal = (item.price * item.quantity).toFixed(2)
+  const decreaseLabel =
+    item.quantity > 1
+      ? `Decrease quantity of ${item.name}`
+      : `Decrease quantity of ${item.name} and remove it from cart`
 
   return (
-    <div
-      className={`flex items-center gap-4 p-4 border border-border-default rounded-lg bg-background-primary ${
-        className ?? ''
-      }`}
+    <li
+      className={cn(
+        'flex flex-wrap items-center gap-4 p-4 rounded-lg border border-border-structural bg-surface-base-secondary',
+        className
+      )}
     >
       <div className="flex-1 min-w-0">
         <h3 className="text-text-primary font-medium truncate">{item.name}</h3>
         <p className="text-text-secondary text-sm mt-0.5">${item.price.toFixed(2)} each</p>
       </div>
 
-      <div className="flex items-center gap-2 shrink-0">
-        <button
+      <div
+        className="flex items-center gap-2 shrink-0"
+        role="group"
+        aria-label={`Change quantity of ${item.name}`}
+      >
+        <Button
+          type="secondary"
+          size={ButtonSize.MEDIUM}
           onClick={() => onDecrease(item.productId)}
-          aria-label={`Decrease quantity of ${item.name}`}
-          className="w-8 h-8 flex items-center justify-center rounded border border-border-default text-text-primary hover:bg-background-hover transition-colors"
+          aria-label={decreaseLabel}
         >
-          −
-        </button>
-        <span
+          <span aria-hidden="true">−</span>
+        </Button>
+        <output
           className="w-8 text-center text-text-primary font-medium"
-          aria-label={`Quantity: ${item.quantity}`}
+          aria-label={`Quantity of ${item.name}`}
         >
           {item.quantity}
-        </span>
-        <button
+        </output>
+        <Button
+          type="secondary"
+          size={ButtonSize.MEDIUM}
           onClick={() => onIncrease(item.productId)}
           aria-label={`Increase quantity of ${item.name}`}
-          className="w-8 h-8 flex items-center justify-center rounded border border-border-default text-text-primary hover:bg-background-hover transition-colors"
         >
-          +
-        </button>
+          <span aria-hidden="true">+</span>
+        </Button>
       </div>
 
-      <div className="w-24 text-right text-text-primary font-medium shrink-0">${subtotal}</div>
+      <div className="w-28 text-right shrink-0">
+        <span className="block text-xs text-text-secondary">Subtotal</span>
+        <span className="text-text-primary font-medium">${subtotal}</span>
+      </div>
 
       <Button
         type="secondary"
@@ -80,7 +95,7 @@ const CartItem: React.FC<CartItemProps> = ({
       >
         Remove
       </Button>
-    </div>
+    </li>
   )
 }
 

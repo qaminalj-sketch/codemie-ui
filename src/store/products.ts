@@ -16,8 +16,8 @@
 import { proxy } from 'valtio'
 
 import { PRODUCTS_PER_PAGE } from '@/constants/shoppingCart'
-import { Product, ProductsResponse } from '@/types/entity/product'
-import api from '@/utils/api'
+import { PRODUCTS } from '@/data/products'
+import { Product } from '@/types/entity/product'
 
 interface ProductsPagination {
   page: number
@@ -36,6 +36,9 @@ interface ProductsStoreType {
 
 const DEFAULT_PAGE = 0
 
+// The shopping cart POC is front-end only: products come from the static catalogue in
+// `@/data/products`. The async signatures are kept so a real API can replace it later.
+
 export const productsStore = proxy<ProductsStoreType>({
   items: [],
   pagination: {
@@ -50,11 +53,9 @@ export const productsStore = proxy<ProductsStoreType>({
     this.loading = true
     this.error = null
     try {
-      const params = { page, per_page: this.pagination.perPage }
-      const response = await api.get('v1/products', { params })
-      const data: ProductsResponse = await response.json()
-      this.items = data.items ?? data
-      this.pagination.total = data.total ?? 0
+      const start = page * this.pagination.perPage
+      this.items = PRODUCTS.slice(start, start + this.pagination.perPage)
+      this.pagination.total = PRODUCTS.length
       this.pagination.page = page
     } catch (err: any) {
       this.error = err.message ?? 'Failed to load products'
@@ -65,7 +66,8 @@ export const productsStore = proxy<ProductsStoreType>({
   },
 
   async fetchProductById(id) {
-    const response = await api.get(`v1/products/${id}`)
-    return (await response.json()) as Product
+    const product = PRODUCTS.find((item) => item.id === id)
+    if (!product) throw new Error(`Product not found: ${id}`)
+    return { ...product }
   },
 })

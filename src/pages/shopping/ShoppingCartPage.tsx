@@ -24,7 +24,7 @@ import CartItem from './components/CartItem'
 import CartSummary from './components/CartSummary'
 
 const ShoppingCartPage: React.FC = () => {
-  const { items, loading, error, total } = useSnapshot(shoppingCartStore)
+  const { items, loading, total, itemCount } = useSnapshot(shoppingCartStore)
 
   const handleIncrease = useCallback((productId: string) => {
     shoppingCartStore.increaseQuantity(productId)
@@ -38,6 +38,10 @@ const ShoppingCartPage: React.FC = () => {
     shoppingCartStore.removeFromCart(productId)
   }, [])
 
+  const handleClear = useCallback(() => {
+    shoppingCartStore.clearCart()
+  }, [])
+
   const renderContent = () => {
     if (loading && items.length === 0) {
       return (
@@ -45,9 +49,6 @@ const ShoppingCartPage: React.FC = () => {
           <Spinner />
         </div>
       )
-    }
-    if (error) {
-      return <p className="text-text-error p-4">{error}</p>
     }
     if (items.length === 0) {
       return (
@@ -62,17 +63,19 @@ const ShoppingCartPage: React.FC = () => {
       )
     }
     return (
-      <div className="flex flex-col gap-3">
-        {items.map((item) => (
-          <CartItem
-            key={item.productId}
-            item={item}
-            onIncrease={handleIncrease}
-            onDecrease={handleDecrease}
-            onRemove={handleRemove}
-          />
-        ))}
-        <CartSummary total={total} />
+      <div className="flex flex-col">
+        <ul className="flex flex-col gap-3" aria-label="Cart items">
+          {items.map((item) => (
+            <CartItem
+              key={item.productId}
+              item={item}
+              onIncrease={handleIncrease}
+              onDecrease={handleDecrease}
+              onRemove={handleRemove}
+            />
+          ))}
+        </ul>
+        <CartSummary total={total} itemCount={itemCount} onClear={handleClear} />
       </div>
     )
   }

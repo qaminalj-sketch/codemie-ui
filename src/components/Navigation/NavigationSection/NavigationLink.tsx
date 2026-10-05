@@ -57,6 +57,10 @@ export interface NavigationLinkItem {
   route?: string
   url?: string
   badge?: string
+  /** Overrides the accessible name and collapsed tooltip, e.g. to include a badge count */
+  ariaLabel?: string
+  /** Keeps the badge visible while navigation is collapsed, for live counts rather than labels */
+  persistentBadge?: boolean
 }
 
 interface NavigationLinkProps {
@@ -70,12 +74,15 @@ const NavigationLink: FC<NavigationLinkProps> = ({ item, isBottomSection }) => {
   const isActiveRoute = useMatch(`${item.route}/*`) && matches.at(-1)?.id !== 'start-assistant-chat'
 
   const Icon = item.icon ? iconComponents[item.icon] : null
+  const isBadgeVisible = navigationExpanded || item.persistentBadge
+  const isBadgeOverIcon = item.persistentBadge && !navigationExpanded
 
   return (
     <NavLink
       to={item.route ?? item.url ?? '/'}
       data-tooltip-id={!navigationExpanded ? 'react-tooltip' : undefined}
-      data-tooltip-content={!navigationExpanded ? item.label : undefined}
+      aria-label={item.ariaLabel}
+      data-tooltip-content={!navigationExpanded ? item.ariaLabel ?? item.label : undefined}
       data-tooltip-place="right"
       className={cn(
         'flex grow rounded-lg cursor-pointer group transition-colors duration-100 px-[0.688rem] hover:bg-surface-specific-navigation-link h-9',
@@ -118,7 +125,9 @@ const NavigationLink: FC<NavigationLinkProps> = ({ item, isBottomSection }) => {
           className={cn(
             'absolute right-[5px] px-1.5 py-0.5 rounded text-[10px] font-semibold bg-surface-specific-navigation-badge text-text-specific-navigation-badge leading-none',
             'transition-opacity duration-200 ease-in-out transform-gpu',
-            navigationExpanded ? 'opacity-100' : 'opacity-0'
+            isBadgeVisible ? 'opacity-100' : 'opacity-0',
+            // Collapsed navigation is icon-only, so the badge moves to the icon's corner
+            isBadgeOverIcon && 'top-0.5 right-0.5 px-1'
           )}
         >
           {item.badge}

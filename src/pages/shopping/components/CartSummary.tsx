@@ -17,23 +17,40 @@ import React from 'react'
 
 import Button from '@/components/Button'
 import { ButtonSize } from '@/constants'
+import { cn } from '@/utils/utils'
 
 interface CartSummaryProps {
   total: number
+  itemCount: number
+  onClear: () => void
   className?: string
 }
 
-const CartSummary: React.FC<CartSummaryProps> = ({ total, className }) => (
-  <div
-    className={`flex items-center justify-between p-6 bg-background-secondary rounded-lg border border-border-default mt-4 ${
-      className ?? ''
-    }`}
+const CartSummary: React.FC<CartSummaryProps> = ({ total, itemCount, onClear, className }) => (
+  <section
+    aria-label="Cart summary"
+    className={cn(
+      'flex flex-wrap items-center justify-between gap-4 p-6 rounded-lg border border-border-structural bg-surface-base-secondary mt-4',
+      className
+    )}
   >
-    <span className="text-xl font-semibold text-text-primary">Total: ${total.toFixed(2)}</span>
-    <Button type="primary" size={ButtonSize.MEDIUM}>
-      Proceed to Checkout
-    </Button>
-  </div>
+    <div className="flex flex-col">
+      <span className="text-sm text-text-secondary">
+        {itemCount} {itemCount === 1 ? 'item' : 'items'}
+      </span>
+      <span className="text-xl font-semibold text-text-primary" aria-live="polite">
+        Total: ${total.toFixed(2)}
+      </span>
+    </div>
+    <div className="flex items-center gap-2">
+      <Button type="secondary" size={ButtonSize.MEDIUM} onClick={onClear}>
+        Clear Cart
+      </Button>
+      <Button type="primary" size={ButtonSize.MEDIUM}>
+        Proceed to Checkout
+      </Button>
+    </div>
+  </section>
 )
 
 export default CartSummary

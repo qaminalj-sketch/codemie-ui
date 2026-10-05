@@ -15,8 +15,13 @@
 
 export const CART_STORAGE_KEY = 'shopping_cart'
 export const PRODUCTS_PER_PAGE = 12
+export const MAX_PRODUCT_ID_LENGTH = 128
 
 export const CART_MESSAGES = {
   UNAVAILABLE_PRODUCT: 'Sorry, this product is currently unavailable',
   PRODUCT_LOAD_ERROR: 'Failed to load product. Please try again',
+  INVALID_PRODUCT: 'This product cannot be added to the cart',
+  ADDED_TO_CART: (productName: string) => `${productName} added to cart`,
+  QUANTITY_INCREASED: (productName: string, quantity: number) =>
+    `${productName} quantity updated to ${quantity}`,
 } as const

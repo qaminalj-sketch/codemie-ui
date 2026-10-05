@@ -18,6 +18,7 @@ import React from 'react'
 import Button from '@/components/Button'
 import { ButtonSize } from '@/constants'
 import { Product } from '@/types/entity/product'
+import { cn } from '@/utils/utils'
 
 interface ProductCardProps {
   product: Product
@@ -25,11 +26,17 @@ interface ProductCardProps {
   className?: string
 }
 
+// aria-disabled is used instead of native `disabled` on purpose: a disabled button cannot be
+// focused or activated, so the unavailable-product message (AC-07) would never be reachable.
+// The button stays focusable and Enter/Space/click still call onAddToCart, where the cart store
+// rejects the product and shows the toast. Hover/active styles are neutralised so it looks inert.
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, className }) => (
-  <div
-    className={`flex flex-col gap-3 p-4 border border-border-default rounded-lg bg-background-primary ${
-      className ?? ''
-    }`}
+  <article
+    aria-label={product.name}
+    className={cn(
+      'flex flex-col gap-3 p-4 rounded-lg border border-border-structural bg-surface-base-secondary',
+      className
+    )}
   >
     <div className="flex-1">
       <h3 className="text-text-primary font-medium">{product.name}</h3>
@@ -41,9 +48,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, classNa
     <div className="flex items-center justify-between mt-auto">
       <span className="text-text-primary font-semibold">${product.price.toFixed(2)}</span>
       <Button
-        type="primary"
+        type={product.available ? 'primary' : 'base'}
         size={ButtonSize.SMALL}
-        disabled={!product.available}
+        aria-disabled={!product.available || undefined}
+        className={cn(
+          !product.available &&
+            'cursor-not-allowed opacity-50 hover:bg-surface-base-secondary active:bg-surface-base-secondary'
+        )}
         onClick={() => onAddToCart(product.id)}
         aria-label={
           product.available
@@ -54,7 +65,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart, classNa
         {product.available ? 'Add to Cart' : 'Unavailable'}
       </Button>
     </div>
-  </div>
+  </article>
 )
 
 export default ProductCard

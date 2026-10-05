@@ -29,6 +29,7 @@ import { useVueRouter } from '@/hooks/useVueRouter'
 import { appInfoStore } from '@/store/appInfo'
 import { applicationsStore } from '@/store/applications'
 import { chatsStore } from '@/store/chats'
+import { shoppingCartStore } from '@/store/shoppingCart'
 import { isEnterpriseEdition } from '@/utils/enterpriseEdition'
 import { cn } from '@/utils/utils'
 
@@ -52,6 +53,7 @@ const Navigation: React.FC<NavigationProps> = () => {
   const showGradient = appearance?.gradients ?? true
   const showBorder = appearance?.navigationBorder ?? !isDark
   const { applications } = useSnapshot(applicationsStore)
+  const { itemCount: cartItemCount } = useSnapshot(shoppingCartStore)
 
   const isExpanded = navigationExpanded
 
@@ -142,6 +144,11 @@ const Navigation: React.FC<NavigationProps> = () => {
         label: 'Shopping Cart',
         icon: IconType.DOCUMENT,
         route: router.resolve({ name: SHOPPING_CART }).fullPath,
+        ...(cartItemCount > 0 && {
+          badge: String(cartItemCount),
+          persistentBadge: true,
+          ariaLabel: `Shopping Cart, ${cartItemCount} ${cartItemCount === 1 ? 'item' : 'items'}`,
+        }),
       },
     ]
 
@@ -163,7 +170,7 @@ const Navigation: React.FC<NavigationProps> = () => {
     }
 
     return items
-  }, [router, isSchedulersViewEnabled])
+  }, [router, isSchedulersViewEnabled, cartItemCount])
 
   const favoritesItems: NavigationLinkItem[] = useMemo(
     () =>

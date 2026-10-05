@@ -21,8 +21,3 @@ export interface Product {
   description?: string
   imageUrl?: string
 }
-
-export interface ProductsResponse {
-  items: Product[]
-  total: number
-}

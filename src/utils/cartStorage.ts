@@ -15,28 +15,47 @@
 
 import { CART_STORAGE_KEY } from '@/constants/shoppingCart'
 import { CartItem } from '@/types/entity/shoppingCart'
+import { isValidCartItem, toCartItem } from '@/utils/cartValidation'
+
+// The cart lives in sessionStorage: it survives navigation and reloads within the
+// shopping session and is discarded when the tab closes. Only non-sensitive product
+// fields (id, name, price, quantity, availability) are ever written.
+
+const sanitizeCartItems = (value: unknown): CartItem[] => {
+  if (!Array.isArray(value)) return []
+  const seen = new Set<string>()
+  return value.filter(isValidCartItem).reduce<CartItem[]>((acc, item) => {
+    if (!seen.has(item.productId)) {
+      seen.add(item.productId)
+      acc.push(toCartItem(item))
+    }
+    return acc
+  }, [])
+}
 
 export const saveCartToStorage = (cartItems: CartItem[]): void => {
   try {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems))
-  } catch {
-    // Graceful fallback when localStorage is unavailable (e.g. private browsing)
+    sessionStorage.setItem(CART_STORAGE_KEY, JSON.stringify(sanitizeCartItems(cartItems)))
+  } catch (err) {
+    // Graceful fallback: the cart keeps working in memory when storage is unavailable or full
+    console.warn('Shopping cart could not be saved to sessionStorage:', err)
   }
 }
 
 export const loadCartFromStorage = (): CartItem[] => {
   try {
-    const stored = localStorage.getItem(CART_STORAGE_KEY)
-    return stored ? (JSON.parse(stored) as CartItem[]) : []
+    const stored = sessionStorage.getItem(CART_STORAGE_KEY)
+    return stored ? sanitizeCartItems(JSON.parse(stored)) : []
   } catch {
+    // Unavailable storage or corrupted JSON starts an empty cart
     return []
   }
 }
 
 export const clearCartStorage = (): void => {
   try {
-    localStorage.removeItem(CART_STORAGE_KEY)
+    sessionStorage.removeItem(CART_STORAGE_KEY)
   } catch {
-    // Graceful fallback when localStorage is unavailable
+    // Graceful fallback when sessionStorage is unavailable
   }
 }
