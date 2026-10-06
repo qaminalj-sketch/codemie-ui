@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "branch": "feature/EPMCDMETST-66906-shopping-cart-management",
+  "head": "df29ee02b8e3696dd9b65889dc558af27eabb9be",
+  "runner": "npm",
+  "started_at": "2026-10-06T13:56:47+05:30",
+  "status": "PASSED",
+  "drift_detected": false,
+  "gates": [
+    {
+      "id": "lint",
+      "source": "guide",
+      "status": "PASS",
+      "command": "npm run lint",
+      "exit_code": 0,
+      "notes": "0 errors; 1 warning (WorkItemsListPage.tsx no-alert warning)"
+    },
+    {
+      "id": "typecheck",
+      "source": "guide",
+      "status": "PASS",
+      "command": "npm run typecheck",
+      "exit_code": 0
+    },
+    {
+      "id": "secrets",
+      "source": "guide",
+      "status": "PASS",
+      "command": "npm run secrets:check",
+      "exit_code": 0,
+      "notes": "Gitleaks completed with no leaks found"
+    },
+    {
+      "id": "unit",
+      "source": "guide",
+      "status": "PASS",
+      "command": "npm run test:unit",
+      "exit_code": 0,
+      "notes": "576 test files passed; 5886 tests passed"
+    },
+    {
+      "id": "integration",
+      "source": "guide",
+      "status": "PASS",
+      "command": "npm run test:integration",
+      "exit_code": 0,
+      "notes": "47 test files passed; 548 tests passed; 1 skipped"
+    },
+    {
+      "id": "license-headers",
+      "source": "guide",
+      "status": "PASS",
+      "command": "npm run license-headers:check",
+      "exit_code": 0,
+      "notes": "0 missing license headers"
+    },
+    {
+      "id": "build",
+      "source": "guide",
+      "status": "PASS",
+      "command": "npm run build:prod",
+      "exit_code": 0,
+      "notes": "Vite production build completed successfully in 16.73s; warnings only"
+    }
+  ],
+  "failures": {}
+}
