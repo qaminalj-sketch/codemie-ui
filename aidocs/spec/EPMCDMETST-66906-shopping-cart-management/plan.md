@@ -126,9 +126,9 @@ If backend integration is needed in the future, the following endpoints would be
   │   │           ├── ProductCard.tsx    (NEW) - Product card (w/ Add to Cart)
   │   │           └── AddToCartButton.tsx (NEW) - Reusable button
   │   ├── components/
-  │   │   └── Layout/
-  │   │       ├── Header.tsx (MODIFIED) - Add cart icon w/ item count
-   │   │       └── Navigation.tsx (MODIFIED) - Add cart link
+  │   │   └── Navigation/
+  │   │       ├── Navigation.tsx (MODIFIED) - cart nav entry with item-count badge, accessible name 'Shopping Cart, N items'
+  │   │       └── NavigationSection/NavigationLink.tsx (MODIFIED) - cart nav entry with item-count badge, accessible name 'Shopping Cart, N items'
   │   ├── types/
    │   │   └── entity/
    │   │       └── product.ts (NEW) - Product interface
@@ -290,15 +290,11 @@ export interface Cart {
 ### Phase 4: Navigation & Integration
 
 1. **Update Navigation†** (1 hour)
-   - Modify `src/components/Layout/Navigation.tsx`
-      - Add link to CartPage
-      - Add "cart" navigation item
-
-2. **Update Header†** (1 hour)
-   - Modify `src/components/Layout/Header.tsx`
-      - Add cart icon with item count badge
-      - Use `cartStore.itemCount` for badge value
-      - Link to CartPage
+   - Modify `src/components/Navigation/Navigation.tsx` and `src/components/Navigation/NavigationSection/NavigationLink.tsx`
+      - Add cart nav entry with item-count badge
+      - Badge reads `shoppingCartStore.itemCount`; shown only when count > 0
+      - Accessible name: `'Shopping Cart, N items'` (singular/plural handled)
+      - Badge persists over the icon in collapsed nav (`persistentBadge: true`)
 
 3. **Add Routes†** (30 minutes)
    - Update `src/router.tsx`
